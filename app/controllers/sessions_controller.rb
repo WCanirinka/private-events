@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: params[:session][:name].downcase) 
+    @user = User.find_by(name: params[:session][:name].downcase)
     if @user
       log_in @user
       remember @user
@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
     else
       flash.now[:danger] = 'Invalid name'
       render 'new'
+    end
   end
-
   def destroy
   end
 end
