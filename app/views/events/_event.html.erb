@@ -4,5 +4,15 @@
     <h6>Creator: <%= event.user.name %></h6>
     <% if @logged_in %>
         <h6><%= User.find_by(id: event.user_id).name %></h6>
+        <div class="attendees">
+            <h1>Attendees</h1>
+            <% if @attendees.any? %>
+                <% @attendees.each do |attendee|%>
+                <%= attendee.name %>
+                <%end%>
+            <% else %>
+                <h1 class="empty-data-collect-text">No attendees yet!</h1>
+            <% end %>
+        </div> 
     <% end %>
 <li>

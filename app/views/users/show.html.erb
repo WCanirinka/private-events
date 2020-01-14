@@ -14,6 +14,8 @@
       <h3>Events (<%= @user.events.count %>)</h3>
       <ol>
         <%= render @events %>
+        <%= @user.past %>
+        <%= @user.upcoming %>
       </ol>
     <% end %>
   </div>
