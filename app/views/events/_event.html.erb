@@ -6,13 +6,18 @@
         <h6><%= User.find_by(id: event.user_id).name %></h6>
         <div class="attendees">
             <h1>Attendees</h1>
-            <% if @attendees.any? %>
+            <% if @attendees %>
                 <% @attendees.each do |attendee|%>
-                <%= attendee.name %>
+                  <%= attendee.name %>
                 <%end%>
             <% else %>
-                <h1 class="empty-data-collect-text">No attendees yet!</h1>
+                <h1>No attendees yet!</h1>
             <% end %>
-        </div> 
+
+            <%= form_for(@current_user.attendances.build) do |f| %>
+              <%= hidden_field_tag :event_id, event.id %>
+              <%= f.submit 'Attend' %>
+            <% end %>
+        </div>
     <% end %>
 <li>

@@ -6,6 +6,10 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def show
+    @attendees = @event.attendees
+  end
+
   def index
     @events = Event.all
     @logged_in = logged_in?

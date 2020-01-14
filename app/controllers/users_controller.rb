@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @upcoming_events = current_user.attendings.upcoming
     render 'upcoming_events'
   end
-    
+
   def past
     @past_events = current_user.attendings.past
     render 'past_events'
