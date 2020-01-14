@@ -1,2 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<% provide(:title, @user.name) %>
+<div>
+  <aside>
+    <section>
+      <p>
+        <%= @user.name %><br>
+        <%= @user.email %><br>
+        <%= @user.created_at %>
+      </p>
+    </section>
+  </aside>
+  <div>
+    <% if @user.events.any? %>
+      <h3>Events (<%= @user.events.count %>)</h3>
+      <ol>
+        <%= render @events %>
+      </ol>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def show; end
+  def show
+    @user = User.find(params[:id])
+    @events = @user.events
+  end
 
   def create
     @user = User.new(user_params)
