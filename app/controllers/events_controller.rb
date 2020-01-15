@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
-  before_action :logged_in?, only: [:create, :destroy]
+  before_action :logged_in?, only: %i[create destroy]
   before_action :correct_user, only: :destroy
 
   def new
@@ -22,7 +24,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     @event.user_id = current_user.id
     if @event.save
-      flash[:success] = "Event created!"
+      flash[:success] = 'Event created!'
       redirect_to root_url
     else
       @feed_items = []
@@ -33,24 +35,23 @@ class EventsController < ApplicationController
   def update
     @event.update(event_params)
     if @event.save
-      flash[:success] = "Event was successfully updated!"
+      flash[:success] = 'Event was successfully updated!'
       redirect_to @event
     else
       render :edit
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
-    def event_params
-      params.require(:event).permit(:date)
-    end
+  def event_params
+    params.require(:event).permit(:date)
+  end
 
-    def correct_user
-      @event = current_user.events.find_by(id: params[:id])
-      redirect_to root_url if @event.nil?
-    end
+  def correct_user
+    @event = current_user.events.find_by(id: params[:id])
+    redirect_to root_url if @event.nil?
+  end
 end
