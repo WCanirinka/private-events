@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_event, only: %i[show update edit destroy]
+  before_action :set_user, only: %i[show update edit destroy]
   before_action :logged_in?, only: %i[new create edit update destroy index]
 
   def new
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @attendances = @user.attendances
     @past_events = Event.past
     @upcoming_events = Event.upcoming
+    @logged_in = logged_in?
   end
 
   def create
@@ -57,5 +58,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email)
+  end
+
+  def set_user
+     @user = User.find(params[:id])
   end
 end

@@ -16,6 +16,7 @@
         <li> <%= link_to "Events", events_path %> </li>
         <% if @logged_in %>
             <li><%= link_to "Create Event", events_new_path %></li>
+            <li><%= link_to "Go to Profile", user_path(@current_user) %></li>
             <li> <%= link_to 'Sign Out', logout_path, :method => :delete %> </li>
         <% else %>
             <li> <%= link_to "Sign Up", signup_path %> </li>

@@ -54,4 +54,8 @@ class EventsController < ApplicationController
     @event = current_user.events.find_by(id: params[:id])
     redirect_to root_url if @event.nil?
   end
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 end
