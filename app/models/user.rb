@@ -7,7 +7,7 @@ class User < ApplicationRecord
     attr_accessor :session_token
     has_many :events, dependent: :destroy
     has_many :attendances, foreign_key: 'attendee_id'
-    has_many :attendings, through: :attendances, source: :event 
+    has_many :attendings, through: :attendances, source: :event
 
     def remember
       self.remember_token = User.new_token
@@ -29,10 +29,14 @@ class User < ApplicationRecord
     def attend(event)
       attendings << event
     end
-      
+
     def unattend(event)
       attendings.delete(event)
-    end 
+    end
+
+    def attending?(event)
+      attendings.include?(event)
+    end
 
     private
 

@@ -1,4 +1,9 @@
-<h1>Events</h1>
-<ul>
-    <%= render @events %>
-<ul>
+<h1>Upcoming events</h1>
+<% @upcoming_events.each do |event| %>
+  <%= render event%>
+<% end %>
+
+<h1>Past Events</h1>
+<% @past_events.each do |event| %>
+  <%= render event%>
+<% end %>

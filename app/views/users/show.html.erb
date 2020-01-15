@@ -9,12 +9,30 @@
       </p>
     </section>
   </aside>
+
   <div>
     <% if @user.events.any? %>
-      <h3>Events (<%= @user.events.count %>)</h3>
-      <ol>
-        <%= render @events %>
-      </ol>
+      <h1>Upcoming events</h1>
+      <% @upcoming_events.each do |event| %>
+        <%= render event%>
+      <% end %>
+
+      <h1>Past Events</h1>
+      <% @past_events.each do |event| %>
+        <%= render event%>
+      <% end %>
     <% end %>
   </div>
+
+  <div>
+    <% if @attendances.any? %>
+      <h3>Attendances (<%= @attendances.count %>)</h3>
+        <ul>
+          <% @attendances.each do |attendance|%>
+            <li><%= attendance.event.date %></li>
+          <%end%>
+        </ul>
+    <% end %>
+  </div>
+
 </div>

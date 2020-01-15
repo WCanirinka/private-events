@@ -1,18 +1,3 @@
-
-<div class="event-cover-image" style = "background-image: url(<%= url_for(@event.cover_image)%>)">
-</div>
 <div class="events-section event-show-body">
   <%= render @event %>
-  <% if logged_in? %>
-  <div class="attendees">
-    <h1>Attendees</h1>
-    <% if @attendees.any? %>
-      <% @attendees.each do |attendee|%>
-        <%= attendee.name %>
-      <%end%>
-    <% else %>
-      <h1 class="empty-data-collect-text">No attendees yet!</h1>
-    <% end %>
-  </div>
-  <% end %>
 </div>

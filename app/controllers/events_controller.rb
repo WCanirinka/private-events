@@ -7,12 +7,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @attendees = @event.attendees
+    @event = Event.find(params[:id])
+    @logged_in = logged_in?
   end
 
   def index
     @events = Event.all
     @logged_in = logged_in?
+    @past_events = Event.past
+    @upcoming_events = Event.upcoming
   end
 
   def create
@@ -24,6 +27,16 @@ class EventsController < ApplicationController
     else
       @feed_items = []
       render 'new'
+    end
+  end
+
+  def update
+    @event.update(event_params)
+    if @event.save
+      flash[:success] = "Event was successfully updated!"
+      redirect_to @event
+    else
+      render :edit
     end
   end
 

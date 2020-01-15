@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
   get 'attendances/create'
   get 'attendances/destroy'
   get 'events/create'
@@ -9,9 +10,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  root 'sessions#new'
+  root 'welcome#index'
   get '/events/new'
-
 
   resources :users
   resources :events
