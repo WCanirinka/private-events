@@ -1,0 +1,17 @@
+<div>
+    <ul>
+        <%= form_for(@user) do |f| %>
+        <li>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </li>
+        <li>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+        </li>
+        <li>
+            <%= f.submit "Create my account" %>
+        </li>
+        <% end %>
+    </ul>
+</div>

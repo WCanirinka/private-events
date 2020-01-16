@@ -1,0 +1,14 @@
+<div>
+    <h1>Past Events</h1>
+    <% if @past_events.any? %>
+      <% @past_events.each do |event| %>
+        <div>
+            <div>
+               <%= render  "event_card", event: event %>
+            </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>You haven't been invited to any events that have passed</p>
+    <% end %>
+  </div>

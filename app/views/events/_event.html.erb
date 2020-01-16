@@ -1,0 +1,36 @@
+<li>
+    <p><%= event.date %></p>
+    <h6>Updated at: <%= event.updated_at %></h6>
+    <h6>Creator: <%= event.user.name %><li><%= link_to "Go to Profile", user_path(event.user_id) %></li></h6>
+    <% @attendees = event.attendees %>
+    <% if @logged_in %>
+        <h6><%= User.find_by(id: event.user_id).name %></h6>
+        <div class="attendees">
+          <% if @logged_in %>
+            <h1>Attendees</h1>
+            <% if @attendees %>
+              <ul>
+                <% @attendees.each do |attendee|%>
+                  <li><%= attendee.name %></li>
+                <%end%>
+              </ul>
+            <% else %>
+                <h1>No attendees yet!</h1>
+            <% end %>
+            <% unless @current_user.attending?(event) %>
+              <%= form_for(@current_user.attendances.build) do |f| %>
+                <%= hidden_field_tag :event_id, event.id %>
+                <%= f.submit 'Attend' %>
+              <% end %>
+            <% else %>
+              <%= form_for(@current_user.attendances.find_by(event_id: event.id), html: {method: :delete}) do |f| %>
+                <%= hidden_field_tag :event_id, event.id %>
+                <%= f.submit 'Unattend' %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= link_to "Go to Event", event_path(event) %>
+        </div>
+    <% end %>
+
+</li>
